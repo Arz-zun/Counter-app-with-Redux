@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useSelector,useDispatch } from 'react-redux';
+import {increament,decreament} from "./Redux/Action/Counter";
+import { Login,Logout } from './Redux/Action/isLogin';
+import Navbar from './Component/Navbar';
 
 function App() {
+
+  const dispatch=useDispatch();
+  const newNum=5;
+  const logout=false;
+  const login=true;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Navbar/>
+    <div className='flex justify-center gap-5 text-white w-full' >
+      <button onClick={()=>dispatch(increament(newNum))} className=' bg-red-400 p-2 rounded-2xl'>increament</button>
+      <button onClick={()=>dispatch(decreament())} className=' bg-red-400 p-2 rounded-2xl'>Decreament</button>
+      <button onClick={()=>dispatch(Login(login))} className=' bg-red-400 p-2 rounded-2xl'>Login</button>
+      <button onClick={()=>dispatch(Logout(logout))} className=' bg-red-400 p-2 rounded-2xl'>Logout</button>
+  </div>
+  </>
   );
 }
 
